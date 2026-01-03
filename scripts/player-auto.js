@@ -75,10 +75,15 @@ class StoryPlayer {
         }
     }
 
-    // НОВАЯ ФУНКЦИЯ: Запись экрана с автостартом
+    // НОВАЯ ФУНКЦИЯ: Запись экрана с поддержкой iOS
     async toggleRecording() {
         if (!this.isRecording) {
             try {
+                // Проверяем поддержку API
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+                    throw new Error('Запись экрана не поддерживается');
+                }
+                
                 const stream = await navigator.mediaDevices.getDisplayMedia({
                     video: { mediaSource: 'screen' },
                     audio: true
@@ -102,31 +107,78 @@ class StoryPlayer {
                 
                 // Обновляем UI
                 const icon = document.getElementById('record-icon');
-                icon.classList.add('animate-pulse', 'bg-red-600');
+                if (icon) {
+                    icon.classList.add('animate-pulse', 'bg-red-600');
+                }
                 
             } catch (err) {
-                alert('Ошибка записи экрана: ' + err.message);
+                // iOS fallback - показываем инструкцию
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                if (isIOS) {
+                    alert('📱 На iPhone:
+1. Открой Пульт управления
+2. Нажми "Запись экрана"
+3. Вернись в Safari
+4. Нажми "Автозапуск"');
+                } else {
+                    alert('Ошибка записи экрана: ' + err.message);
+                }
+                throw err;
             }
         } else {
-            this.mediaRecorder.stop();
+            if (this.mediaRecorder) {
+                this.mediaRecorder.stop();
+            }
             this.isRecording = false;
             
             // Обновляем UI
             const icon = document.getElementById('record-icon');
-            icon.classList.remove('animate-pulse', 'bg-red-600');
+            if (icon) {
+                icon.classList.remove('animate-pulse', 'bg-red-600');
+            }
         }
     }
 
-    // Автостарт записи
+    // Автостарт записи с проверкой iOS
     async autoStartRecording() {
+        // Проверяем iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        
+        if (isIOS) {
+            // На iOS показываем кнопку для ручного запуска
+            document.getElementById('auto-btn').textContent = '📱 Нажми для записи';
+            document.getElementById('auto-btn').onclick = () => {
+                this.toggleRecording().then(() => {
+                    setTimeout(() => this.startAutoPlay(), 1000);
+                });
+            };
+            return;
+        }
+        
         await sleep(2000);
-        await this.toggleRecording();
-        await sleep(1000);
-        this.startAutoPlay();
+        try {
+            await this.toggleRecording();
+            await sleep(1000);
+            this.startAutoPlay();
+        } catch (err) {
+            // Fallback для других браузеров
+            document.getElementById('auto-btn').textContent = '🎬 Автозапуск';
+            console.log('Автозапись недоступна:', err.message);
+        }
     }
 
-    // Автостоп записи
+    // Автостоп записи с проверкой
     autoStopRecording() {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        
+        if (isIOS) {
+            // На iOS показываем уведомление
+            setTimeout(() => {
+                alert('🎬 История завершена!\nОстанови запись в Пульте управления');
+            }, 2000);
+            return;
+        }
+        
         if (this.isRecording) {
             setTimeout(() => {
                 this.toggleRecording();
