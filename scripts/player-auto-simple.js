@@ -24,9 +24,33 @@ class StoryPlayer {
         };
         
         Object.values(this.sounds).forEach(sound => {
-            sound.volume = 0.3;
-            sound.onerror = () => console.log('Sound not found');
+            sound.volume = 0.1; // Уменьшаем громкость
+            sound.onerror = () => console.log('Sound file not found - using Web Audio instead');
         });
+        
+        // Активируем аудио при первом клике
+        document.addEventListener('click', this.enableAudio.bind(this), { once: true });
+    }
+
+    enableAudio() {
+        // Активируем Web Audio API
+        if (typeof proceduralAudio !== 'undefined' && proceduralAudio.audioContext) {
+            if (proceduralAudio.audioContext.state === 'suspended') {
+                proceduralAudio.audioContext.resume().then(() => {
+                    console.log('🔊 Аудио контекст активирован!');
+                });
+            }
+        }
+        
+        // Тестовый звук
+        this.playTestSound();
+    }
+
+    playTestSound() {
+        // Тестируем Web Audio
+        if (typeof proceduralAudio !== 'undefined') {
+            proceduralAudio.playSound('message_notification', 0.5);
+        }
     }
 
     initSnow() {
@@ -59,9 +83,31 @@ class StoryPlayer {
     }
 
     playSound(name) {
+        // Приоритет Web Audio API
+        if (typeof proceduralAudio !== 'undefined' && !this.isMuted) {
+            // Маппинг стандартных звуков на Web Audio
+            const audioMapping = {
+                'click': 'message_notification', // 🔔 ПРИЯТНЫЙ ЗВУК СООБЩЕНИЙ
+                'system': 'ethereal_hum', 
+                'whisper': 'ghost_whisper',
+                'glitch': 'electric_zap',
+                'camera': 'crystal_chime',
+                'ambient': 'wind_howl'
+            };
+            
+            const webAudioSound = audioMapping[name];
+            if (webAudioSound) {
+                proceduralAudio.playSound(webAudioSound, 0.3);
+                return;
+            }
+        }
+        
+        // Fallback к обычным файлам (если есть)
         if (!this.isMuted && this.sounds[name]) {
             this.sounds[name].currentTime = 0;
-            this.sounds[name].play().catch(e => console.log("Audio play blocked"));
+            this.sounds[name].play().catch(e => {
+                console.log('Используем Web Audio вместо файлов');
+            });
         }
     }
 
@@ -364,8 +410,12 @@ class StoryPlayer {
         
         // Добавляем тряску экрана для высокой интенсивности
         if (intensity >= 3) {
-            document.body.style.animation = 'screenShake 0.5s ease-in-out';
-            setTimeout(() => document.body.style.animation = '', 500);
+            // Применяем тряску только к контенту, НЕ к шапке
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow) {
+                chatWindow.classList.add('screen-shake-effect');
+                setTimeout(() => chatWindow.classList.remove('screen-shake-effect'), 500);
+            }
         }
     }
 

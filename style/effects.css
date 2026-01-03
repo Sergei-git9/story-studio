@@ -1,5 +1,7 @@
 /* Эффекты для атмосферы */
 
+/* ВАЖНО: Все эффекты должны иметь pointer-events: none и не влиять на layout */
+
 /* Потемнение экрана */
 .screen-blackout {
     position: fixed;
@@ -9,6 +11,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 5;
+    pointer-events: none; /* НЕ БЛОКИРУЕТ ИНТЕРФЕЙС */
     animation: blackout 2s ease-in-out;
 }
 
@@ -27,6 +30,7 @@
     height: 100%;
     background: radial-gradient(circle, #0066ff 0%, transparent 70%);
     z-index: 5;
+    pointer-events: none; /* НЕ БЛОКИРУЕТ ИНТЕРФЕЙС */
     animation: blueFlash 1s ease-out;
 }
 
@@ -81,18 +85,23 @@
      100% { opacity: 0; transform: scale(0.8) rotate(360deg); }
 }
 
-/* Тряска экрана */
+/* ИСПРАВЛЕННАЯ тряска экрана - НЕ ВЛИЯЕТ НА ШАПКУ */
 @keyframes screenShake {
     0%, 100% { transform: translate(0); }
-    10% { transform: translate(-2px, -1px); }
-    20% { transform: translate(2px, 1px); }
-    30% { transform: translate(-1px, 2px); }
-    40% { transform: translate(1px, -2px); }
-    50% { transform: translate(-2px, 1px); }
-    60% { transform: translate(2px, -1px); }
-    70% { transform: translate(-1px, -2px); }
-    80% { transform: translate(1px, 2px); }
-    90% { transform: translate(-2px, -1px); }
+    10% { transform: translate(-1px, -1px); }
+    20% { transform: translate(1px, 1px); }
+    30% { transform: translate(-1px, 1px); }
+    40% { transform: translate(1px, -1px); }
+    50% { transform: translate(-1px, 1px); }
+    60% { transform: translate(1px, -1px); }
+    70% { transform: translate(-1px, -1px); }
+    80% { transform: translate(1px, 1px); }
+    90% { transform: translate(-1px, 1px); }
+}
+
+/* Применяем тряску только к контенту, НЕ к шапке */
+.screen-shake-effect {
+    animation: screenShake 0.5s ease-in-out;
 }
 
 /* Частицы огня */
@@ -102,6 +111,7 @@
     height: 4px;
     background: radial-gradient(circle, #ff4500 0%, #ff6b00 50%, transparent 100%);
     border-radius: 50%;
+    pointer-events: none; /* НЕ БЛОКИРУЕТ ИНТЕРФЕЙС */
     animation: fireFloat 3s linear infinite;
 }
 
@@ -123,6 +133,7 @@
     height: 12px;
     background: linear-gradient(45deg, #ff69b4, #ffb6c1);
     border-radius: 50% 10px 50% 10px;
+    pointer-events: none; /* НЕ БЛОКИРУЕТ ИНТЕРФЕЙС */
     animation: petalFloat 4s linear infinite;
 }
 
@@ -144,6 +155,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+    pointer-events: none; /* НЕ БЛОКИРУЕТ ИНТЕРФЕЙС */
     z-index: 1;
+}
+
+/* ЗАЩИТА ШАПКИ ОТ ЭФФЕКТОВ */
+.fixed.top-0 {
+    z-index: 9999 !important; /* ВСЕГДА ПОВЕРХ ЭФФЕКТОВ */
+    position: fixed !important;
+    transform: none !important; /* НЕ ПОДВЕРЖЕНА ТРЯСКЕ */
 }

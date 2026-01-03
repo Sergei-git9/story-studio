@@ -338,6 +338,9 @@ class ProceduralAudio {
   // Воспроизведение звука по имени
   playSound(soundName, intensity = 1) {
     switch(soundName) {
+      case 'message_notification':
+        this.playMessageSound();
+        break;
       case 'fire_crackle':
       case 'burn_sizzle':
         this.playFireCrackle(intensity);
@@ -358,6 +361,36 @@ class ProceduralAudio {
         this.playHeartbeat();
         break;
     }
+  }
+
+  // 🔊 ЗВУК СООБЩЕНИЙ
+  playMessageSound() {
+    if (!this.audioContext) return;
+    
+    // Создаем приятный звук уведомления
+    const oscillator1 = this.audioContext.createOscillator();
+    const oscillator2 = this.audioContext.createOscillator();
+    const gainNode = this.audioContext.createGain();
+    
+    // Два тона для гармонии
+    oscillator1.type = 'sine';
+    oscillator1.frequency.value = 800; // Основная нота
+    
+    oscillator2.type = 'sine';
+    oscillator2.frequency.value = 1200; // Гармоника
+    
+    // Плавное затухание
+    gainNode.gain.setValueAtTime(0.15, this.audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
+    
+    oscillator1.connect(gainNode);
+    oscillator2.connect(gainNode);
+    gainNode.connect(this.audioContext.destination);
+    
+    oscillator1.start();
+    oscillator2.start();
+    oscillator1.stop(this.audioContext.currentTime + 0.3);
+    oscillator2.stop(this.audioContext.currentTime + 0.3);
   }
 }
 
