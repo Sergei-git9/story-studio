@@ -287,6 +287,157 @@ class StoryPlayer {
 
     // Проверка эффектов по ключевым словам
     checkForEffects(text) {
+        // Используем новую систему триггеров если доступна
+        if (typeof triggerEffects === 'function') {
+            const effects = triggerEffects(text);
+            effects.forEach(effect => {
+                this.activateEffect(effect);
+            });
+        } else {
+            // Fallback к старой системе
+            this.checkBasicEffects(text);
+        }
+    }
+
+    // Активация эффектов из новой системы
+    activateEffect(effect) {
+        const { category, effects, sounds = [], intensity = 1 } = effect;
+        
+        // 🎨 ВИЗУАЛЬНЫЕ ЭФФЕКТЫ
+        effects.forEach(effectName => {
+            switch(effectName) {
+                case 'fire_glow':
+                case 'screen_heat':
+                case 'burn_flash':
+                    this.createFireEffect(intensity);
+                    break;
+                case 'ember_particles':
+                    this.switchToFireParticles();
+                    break;
+                case 'electric_spark':
+                case 'screen_flicker':
+                case 'power_surge':
+                    this.createBlueFlash();
+                    break;
+                case 'frost_overlay':
+                case 'cold_breath':
+                    this.createColdEffect();
+                    break;
+                case 'ghost_flicker':
+                case 'static_noise':
+                case 'ethereal_glow':
+                    this.createGhostEffect();
+                    break;
+                case 'heart_pulse':
+                case 'emotional_blur':
+                    this.createEmotionalEffect();
+                    break;
+                case 'star_shine':
+                case 'artifact_power':
+                    this.createArtifactEffect(intensity);
+                    break;
+            }
+        });
+
+        // 🔊 ПРОЦЕДУРНЫЕ ЗВУКИ
+        if (sounds.length > 0 && typeof proceduralAudio !== 'undefined') {
+            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+            proceduralAudio.playSound(randomSound, intensity);
+        }
+    }
+
+    // Новые эффекты
+    createFireEffect(intensity = 1) {
+        const fire = document.createElement('div');
+        fire.className = 'fire-effect';
+        fire.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(255,69,0,${0.1 * intensity}) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1000;
+            animation: fireGlow ${3 - intensity * 0.3}s ease-in-out;
+        `;
+        document.body.appendChild(fire);
+        
+        setTimeout(() => fire.remove(), 3000);
+        
+        // Добавляем тряску экрана для высокой интенсивности
+        if (intensity >= 3) {
+            document.body.style.animation = 'screenShake 0.5s ease-in-out';
+            setTimeout(() => document.body.style.animation = '', 500);
+        }
+    }
+
+    createColdEffect() {
+        const frost = document.createElement('div');
+        frost.className = 'frost-effect';
+        frost.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, rgba(173,216,230,0.1) 0%, rgba(135,206,235,0.1) 100%);
+            pointer-events: none;
+            z-index: 1000;
+            animation: frostFade 2s ease-in-out;
+        `;
+        document.body.appendChild(frost);
+        
+        setTimeout(() => frost.remove(), 2000);
+    }
+
+    createGhostEffect() {
+        const ghost = document.createElement('div');
+        ghost.className = 'ghost-effect';
+        ghost.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(128,0,128,0.05);
+            pointer-events: none;
+            z-index: 1000;
+            animation: ghostFlicker 1.5s ease-in-out;
+        `;
+        document.body.appendChild(ghost);
+        
+        setTimeout(() => ghost.remove(), 1500);
+    }
+
+    createEmotionalEffect() {
+        const emotion = document.createElement('div');
+        emotion.className = 'emotional-effect';
+        emotion.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(255,192,203,0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1000;
+            animation: heartPulse 2s ease-in-out;
+        `;
+        document.body.appendChild(emotion);
+        
+        setTimeout(() => emotion.remove(), 2000);
+    }
+
+    createArtifactEffect(intensity = 1) {
+        const artifact = document.createElement('div');
+        artifact.className = 'artifact-effect';
+        artifact.style.cssText = `
+            position: fixed;
+            top: 50%; left: 50%;
+            width: ${50 * intensity}px; height: ${50 * intensity}px;
+            margin: -${25 * intensity}px 0 0 -${25 * intensity}px;
+            background: radial-gradient(circle, rgba(192,192,192,${0.3 * intensity}) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: starShine ${2 - intensity * 0.2}s ease-in-out;
+        `;
+        document.body.appendChild(artifact);
+        
+        setTimeout(() => artifact.remove(), 2000);
+    }
+
+    // Старая система эффектов (fallback)
+    checkBasicEffects(text) {
         const lowerText = text.toLowerCase();
         
         if (lowerText.includes('потух свет') || lowerText.includes('гаснет свет') || lowerText.includes('темно')) {

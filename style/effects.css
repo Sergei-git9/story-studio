@@ -36,6 +36,65 @@
     100% { opacity: 0; }
 }
 
+/* НОВЫЕ ЭФФЕКТЫ ДЛЯ СИСТЕМЫ ТРИГГЕРОВ */
+
+/* Огненные эффекты */
+@keyframes fireGlow {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+/* Холодные эффекты */
+@keyframes frostFade {
+    0% { opacity: 0; filter: blur(0px); }
+    50% { opacity: 0.3; filter: blur(2px); }
+    100% { opacity: 0; filter: blur(0px); }
+}
+
+/* Призрачные эффекты */
+@keyframes ghostFlicker {
+    0%, 100% { opacity: 0; }
+     10% { opacity: 0.1; }
+     20% { opacity: 0; }
+     30% { opacity: 0.2; }
+     40% { opacity: 0; }
+     50% { opacity: 0.15; }
+     60% { opacity: 0; }
+     70% { opacity: 0.1; }
+     80% { opacity: 0; }
+     90% { opacity: 0.05; }
+}
+
+/* Эмоциональные эффекты */
+@keyframes heartPulse {
+    0%, 100% { opacity: 0; transform: scale(1); }
+     25% { opacity: 0.2; transform: scale(1.05); }
+     50% { opacity: 0.1; transform: scale(1.1); }
+     75% { opacity: 0.2; transform: scale(1.05); }
+}
+
+/* Звездное сияние артефакта */
+@keyframes starShine {
+    0% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+     50% { opacity: 0.8; transform: scale(1.2) rotate(180deg); }
+     100% { opacity: 0; transform: scale(0.8) rotate(360deg); }
+}
+
+/* Тряска экрана */
+@keyframes screenShake {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(-2px, -1px); }
+    20% { transform: translate(2px, 1px); }
+    30% { transform: translate(-1px, 2px); }
+    40% { transform: translate(1px, -2px); }
+    50% { transform: translate(-2px, 1px); }
+    60% { transform: translate(2px, -1px); }
+    70% { transform: translate(-1px, -2px); }
+    80% { transform: translate(1px, 2px); }
+    90% { transform: translate(-2px, -1px); }
+}
+
 /* Частицы огня */
 .fire-particle {
     position: absolute;
