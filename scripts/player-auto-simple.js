@@ -115,21 +115,43 @@ class StoryPlayer {
         }
     }
 
-    // Автостарт записи
-    async autoStartRecording() {
-        await sleep(2000);
-        await this.toggleRecording();
-        await sleep(1000);
-        this.startAutoPlay();
-    }
-
-    // Автостоп записи
-    autoStopRecording() {
-        if (this.isRecording) {
-            setTimeout(() => {
-                this.toggleRecording();
-            }, 3000);
+    // Простой старт без API записи
+    async startSimplePlay() {
+        // Отсчет 10 секунд до начала
+        for (let i = 10; i > 0; i--) {
+            document.getElementById('auto-btn').textContent = `Начало через ${i} сек`;
+            await sleep(1000);
         }
+        
+        // Скрываем кнопки и значки
+        document.querySelector('.fixed.top-0 .flex.items-center.gap-4').style.display = 'none';
+        document.getElementById('auto-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
+        
+        // Показываем маленькую кнопку стоп
+        this.createStopButton();
+        
+        // Начинаем автовоспроизведение
+        await this.startAutoPlay();
+        
+        // Через 10 сек после окончания показываем сообщение
+        setTimeout(() => {
+            document.getElementById('stop-btn').remove();
+            alert('🎬 Эпизод закончился! Нажми стоп записи!');
+        }, 10000);
+    }
+    
+    createStopButton() {
+        const stopBtn = document.createElement('button');
+        stopBtn.id = 'stop-btn';
+        stopBtn.textContent = 'Стоп!';
+        stopBtn.className = 'fixed top-4 right-4 bg-red-600 text-white px-3 py-1 rounded text-sm z-50';
+        stopBtn.onclick = () => {
+            this.isPlaying = false;
+            stopBtn.remove();
+            location.reload();
+        };
+        document.body.appendChild(stopBtn);
     }
 
     // Автовоспроизведение
@@ -156,10 +178,7 @@ class StoryPlayer {
         }
         
         this.isPlaying = false;
-        document.getElementById('auto-btn').textContent = '✅ Завершено';
-        document.getElementById('auto-btn').disabled = true;
-        
-        this.autoStopRecording();
+        // Не показываем кнопки - запись завершится автоматически
     }
 
     stopAutoPlay() {
@@ -385,7 +404,8 @@ function startAutoPlay() {
     if (player.isPlaying) {
         player.stopAutoPlay();
     } else {
-        player.startAutoPlay();
+        // Простой старт без записи
+        player.startSimplePlay();
     }
 }
 
@@ -399,9 +419,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (params.story && params.episode) {
         const loaded = await player.loadStory(params.story, params.episode);
         if (loaded) {
-            document.getElementById('next-btn').textContent = 'Начать чтение';
-            // Автостарт записи
-            player.autoStartRecording();
+            // Показываем сообщение о записи
+            document.getElementById('auto-btn').textContent = '📹 СТАРТ';
+            document.getElementById('next-btn').textContent = 'Через 10 сек включи запись экрана';
+            document.getElementById('next-btn').disabled = true;
+            
+            // Через 10 сек показываем инструкцию
+            setTimeout(() => {
+                document.getElementById('auto-btn').textContent = '📹 ВКЛЮЧИ ЗАПИСЬ ЭКРАНА И НАЖМИ СТАРТ!';
+                document.getElementById('next-btn').textContent = 'На iPhone: Пульт управления → Запись экрана';
+                document.getElementById('auto-btn').style.backgroundColor = '#dc2626';
+                document.getElementById('auto-btn').style.animation = 'pulse 1s infinite';
+            }, 10000);
         }
     }
 });
