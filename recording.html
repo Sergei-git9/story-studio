@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recording</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/chat.css">
+    <link rel="stylesheet" href="style/animations.css">
+</head>
+<body class="cinematic-bg">
+    <!-- Снег -->
+    <div class="snow-container" id="snow-container"></div>
+
+    <div class="fixed top-0 w-full p-4 border-b border-white/10 bg-black/80 backdrop-blur-md z-50 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <button onclick="window.location.href='index.html'" class="text-orange-500 hover:text-orange-400">
+                ← Назад
+            </button>
+            <div>
+                <h1 class="text-orange-500 font-bold tracking-widest text-xs">АРТЕФАКТ #402</h1>
+                <p class="text-[9px] text-gray-500 uppercase">Связь: 31 дек 2024</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button id="mute-btn" onclick="toggleMute()" class="p-2 text-gray-400 hover:text-white transition-colors">
+                <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                </svg>
+            </button>
+            <div class="text-right">
+                <span id="year-display" class="text-lg font-bold text-white transition-all">2024</span>
+            </div>
+        </div>
+    </div>
+
+    <main id="chat-window" class="flex-1 mt-20 mb-28 px-4 py-6 overflow-y-auto w-full max-w-2xl mx-auto flex flex-col relative z-10">
+        <div id="story-container" class="flex flex-col">
+            <!-- Сообщения -->
+        </div>
+        <div id="typing-indicator" class="typing px-4">
+            <span id="typing-name"></span> печатает<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+    </main>
+
+    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black via-black to-transparent z-40">
+        <div class="max-w-2xl mx-auto">
+            <button id="next-btn" onclick="processNext()" class="w-full py-4 bg-orange-800 hover:bg-orange-700 text-white rounded-lg tracking-widest uppercase text-[10px] font-bold transition-all shadow-2xl border border-orange-600/30">
+                Продолжить чтение
+            </button>
+        </div>
+    </footer>
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/player.js"></script>
+</body>
+</html>

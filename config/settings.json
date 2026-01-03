@@ -1,0 +1,28 @@
+{
+  "audio": {
+    "enabled": true,
+    "volume": 0.3,
+    "defaultSounds": {
+      "message": "click",
+      "system": "system",
+      "glitch": "glitch",
+      "whisper": "whisper"
+    }
+  },
+  "effects": {
+    "snow": true,
+    "glitch": true,
+    "typing": true,
+    "autoScroll": true
+  },
+  "ui": {
+    "theme": "dark",
+    "font": "Roboto",
+    "animationSpeed": "normal"
+  },
+  "recording": {
+    "autoStart": true,
+    "format": "webm",
+    "quality": "high"
+  }
+}

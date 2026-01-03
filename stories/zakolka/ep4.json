@@ -1,0 +1,325 @@
+[
+  {
+    "type": "system",
+    "text": "31 декабря 2025. Два года. Артем стоит у места аварии с белыми свечами. Заколка жжет ладонь.",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Макс",
+    "time": "21:35",
+    "text": "Артём, где ты? Мама плачет. Отвечай хотя бы.",
+    "sound": "click"
+  },
+  {
+    "type": "system",
+    "text": "*Артем выключает телефон.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*21:58. Свечи зажжены. Пламя не дрожит.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*22:00. Он пытается разжать пальцы. Заколка не отпускает.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:01",
+    "text": "Отпусти...",
+    "sound": "click"
+  },
+  {
+    "type": "system",
+    "text": "*Воздух мерцает. Появляется она.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Тём, не надо. Я боюсь.",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Голос правильный. Лицо правильное. Но что-то...*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:02",
+    "text": "Катя?",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Я не хочу уходить. Мы можем быть вместе. Навсегда.",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Глаза пустые.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:03",
+    "text": "Ты никогда так не говорила.",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Я люблю тебя! Разве этого мало?",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Холод в голосе. Страх за себя, не за него.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:04",
+    "text": "Любовь не держит в клетке.",
+    "sound": "click"
+  },
+  {
+    "type": "system",
+    "text": "*Он сжимает волю в кулак. Бросает заколку в огонь.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*Свет. Крик. Пустота.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*Тишина.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*Другой свет. Теплый.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Спасибо.",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Она. Настоящая. Прозрачная, но живая в глазах.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:07",
+    "text": "Прости меня.",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "За что? Ты пытался меня спасти.",
+    "sound": "whisper"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:08",
+    "text": "Не смог.",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Смог. Сейчас смог.",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Слезы. Он тянется к ней. Рука проходит сквозь свет.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:10",
+    "text": "Как жить без тебя?",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Просто жить. Полно. За нас обоих.",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Она начинает растворяться.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Помнишь наши планы? Дом, дети...",
+    "sound": "whisper"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:12",
+    "text": "Алиса...",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Назови её Алисой. Когда встретишь ту, с кем захочешь это.",
+    "sound": "whisper"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:13",
+    "text": "Не смогу любить так же...",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "По-другому. Каждая любовь своя.",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Она почти прозрачная.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Расскажи ей обо мне. Я не буду ревновать.",
+    "sound": "whisper"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:15",
+    "text": "Обещаю.",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Катя",
+    "time": "--:--",
+    "text": "Живи, Тём. Будь счастлив.",
+    "sound": "whisper"
+  },
+  {
+    "type": "system",
+    "text": "*Улыбка. Та самая. Потом свет.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*Свечи гаснут. Он один.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*Но не одинок.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "*В пепле растет белый цветок.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "left",
+    "name": "Observer_402",
+    "time": "22:20",
+    "text": "ОНА СВОБОДНА.",
+    "sound": "click"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:21",
+    "text": "Спасибо.",
+    "sound": "click"
+  },
+  {
+    "type": "system",
+    "text": "*Телефон. 15 пропущенных.*",
+    "sound": "system"
+  },
+  {
+    "type": "msg",
+    "side": "right",
+    "name": "Артем",
+    "time": "22:25",
+    "text": "Мам? Я иду домой.",
+    "sound": "click"
+  },
+  {
+    "type": "system",
+    "text": "*Снег под ногами. Дорога к жизни.*",
+    "sound": "system"
+  },
+  {
+    "type": "system",
+    "text": "КОНЕЦ ЧЕТВЕРТОГО ЭПИЗОДА",
+    "sound": "system"
+  }
+]

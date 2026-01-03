@@ -1,0 +1,10 @@
+[
+  {
+    "id": "zakolka",
+    "title": "Заколка",
+    "description": "Мистическая история о потере и привязанности",
+    "genre": "Мистика",
+    "episodes": 4,
+    "cover": "stories/zakolka/assets/images/cover.jpg"
+  }
+]
