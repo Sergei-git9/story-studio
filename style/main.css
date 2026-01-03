@@ -98,6 +98,82 @@ header p {
     transform: scale(1.05);
 }
 
+/* Модальное окно выбора режима */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content h3 {
+    color: #ff6b35;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mode-btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.view-btn {
+    background: #3b82f6;
+}
+
+.view-btn:hover {
+    background: #2563eb;
+}
+
+.record-btn {
+    background: #dc2626;
+}
+
+.record-btn:hover {
+    background: #b91c1c;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
 .cinematic-bg {
     background: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
     min-height: 100vh;

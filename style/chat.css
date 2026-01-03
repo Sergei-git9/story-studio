@@ -7,6 +7,14 @@
     z-index: 10;
 }
 
+.msg-left {
+    align-self: flex-start;
+}
+
+.msg-right {
+    align-self: flex-end;
+}
+
 .message.show {
     opacity: 1;
     transform: translateY(0);
@@ -83,3 +91,19 @@
 
 .dot:nth-child(2) { animation-delay: 0.2s; }
 .dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Плавная прокрутка */
+#chat-window {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+    scroll-padding-bottom: 150px;
+}
+
+/* Анимация появления сообщений */
+.message {
+    scroll-margin: 50px 0;
+}
+
+.system-msg {
+    scroll-margin: 30px 0;
+}

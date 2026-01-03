@@ -1,0 +1,90 @@
+/* Эффекты для атмосферы */
+
+/* Потемнение экрана */
+.screen-blackout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5;
+    animation: blackout 2s ease-in-out;
+}
+
+@keyframes blackout {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Синяя вспышка */
+.blue-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #0066ff 0%, transparent 70%);
+    z-index: 5;
+    animation: blueFlash 1s ease-out;
+}
+
+@keyframes blueFlash {
+    0% { opacity: 0; }
+    30% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* Частицы огня */
+.fire-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #ff4500 0%, #ff6b00 50%, transparent 100%);
+    border-radius: 50%;
+    animation: fireFloat 3s linear infinite;
+}
+
+@keyframes fireFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Цветочные лепестки */
+.flower-petal {
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+    border-radius: 50% 10px 50% 10px;
+    animation: petalFloat 4s linear infinite;
+}
+
+@keyframes petalFloat {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* Контейнер для частиц */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}

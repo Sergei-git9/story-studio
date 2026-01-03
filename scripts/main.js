@@ -31,7 +31,7 @@ function renderStories(stories) {
                 </div>
                 <div class="episodes">
                     ${Array.from({length: story.episodes}, (_, i) => 
-                        `<button class="episode-btn" onclick="selectEpisode('${story.id}', ${i + 1})">
+                        `<button class="episode-btn" onclick="showModeSelector('${story.id}', ${i + 1})">
                             Эпизод ${i + 1}
                         </button>`
                     ).join('')}
@@ -43,6 +43,35 @@ function renderStories(stories) {
     });
 }
 
-function selectEpisode(storyId, episodeId) {
-    window.location.href = `recording.html?story=${storyId}&episode=${episodeId}`;
+function showModeSelector(storyId, episodeId) {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <h3>Выберите режим</h3>
+            <div class="mode-buttons">
+                <button onclick="selectMode('${storyId}', ${episodeId}, 'view')" class="mode-btn view-btn">
+                    👁️ Просмотр
+                </button>
+                <button onclick="selectMode('${storyId}', ${episodeId}, 'record')" class="mode-btn record-btn">
+                    🎬 Запись
+                </button>
+            </div>
+            <button onclick="closeModal()" class="close-btn">✕</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function selectMode(storyId, episodeId, mode) {
+    if (mode === 'record') {
+        window.location.href = `recording-auto.html?story=${storyId}&episode=${episodeId}`;
+    } else {
+        window.location.href = `recording.html?story=${storyId}&episode=${episodeId}`;
+    }
+}
+
+function closeModal() {
+    const modal = document.querySelector('.modal-overlay');
+    if (modal) modal.remove();
 }
